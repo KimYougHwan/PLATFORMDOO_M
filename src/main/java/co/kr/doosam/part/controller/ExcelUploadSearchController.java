@@ -1,7 +1,6 @@
 package co.kr.doosam.part.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
@@ -10,10 +9,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.swing.text.View;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -27,14 +24,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.servlet.ModelAndView;
 
 import co.kr.doosam.common.ExcelRead;
 import co.kr.doosam.common.ReadOption;
@@ -50,15 +45,6 @@ public class ExcelUploadSearchController {
 	@RequestMapping(value="/part/excelUploadSearch", method={RequestMethod.POST, RequestMethod.GET})
 	public String excelUploadSearch(Model model, PartSearchVo partSearchVo, HttpServletRequest req){
 		
-//		List<PartSearchVo> selectPart = new ArrayList<PartSearchVo>();
-//		
-//		int page = 1;
-//		String partNumber = "partnumber"; 
-//		
-//		selectPart = excelUploadService.findByPartNumberAndPage(partNumber, page);
-//			
-//		model.addAttribute("selectPart",selectPart);
-
 		return "part/excelUploadSearch";
 	}
 	
@@ -220,9 +206,6 @@ public class ExcelUploadSearchController {
 
 		OutputStream os = response.getOutputStream();
 		
-		//response.setContentType("Application/Msexcel");
-        //response.setHeader("Content-Disposition", "ATTachment; Filename="+fileName);
-        
         response.setContentType("application/vnd.ms-excel"); 
         response.setHeader("Content-Disposition", "attachment; filename="+fileName);
         
