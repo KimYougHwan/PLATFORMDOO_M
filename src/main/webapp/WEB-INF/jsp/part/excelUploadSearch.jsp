@@ -86,7 +86,7 @@ var cnt = 0;
 					html += "<td>" + partsNameKo +"(" + partsNameEn + ")" + "</td>";
 					html += "<td>" + price + "</td>";
 					html += "<td>" + quantity + "</td>";
-					html += "<td>총액</td>";
+					html += "<td>" + (price*quantity) + "원</td>";
 					html += "</tr>";
 					
 				});
@@ -160,18 +160,6 @@ var cnt = 0;
 			alert("체크된 항목이 없습니다.");
 			return false;
 		}else{
-			/*
-			$.ajax({
-				url : "<c:out value='/part/excelDownload' />",
-				type : "post",
-				processData: false,
-				contentType: "application/json",
-				data: JSON.stringify(checkList),
-				dataType : 'json',
-				success : function(data) {
-					alert(data);
-				}
-			});*/
 			
 			$("#selectForm").attr("action", "/part/excelDownload");
 			$("#checkList").val( checkList.substr(0,checkList.length - 1) );
@@ -223,8 +211,8 @@ var cnt = 0;
 					<td>${item.partsNumber }</td>
 					<td>${item.partsNameKo }(${item.partsNameEn })</td>
 					<td>${item.price }</td>
-					<td>${quantity }</td>
-					<td>${item.price }*${quantity }원</td>
+					<td>${item.quantity }</td>
+					<td>${item.price * item.quantity }원</td>
 				</tr>
 			</c:forEach>
 
