@@ -20,6 +20,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.neo4j.cypher.internal.compiler.v2_1.docbuilders.internalDocBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -184,7 +185,7 @@ public class ExcelUploadSearchController {
 		    cell7.setCellStyle(style);
 		    
 		    cell8 = row.createCell((short)7);
-		    cell8.setCellValue(item.getPrice() + "*" + item.getQuantity());
+		    cell8.setCellValue( Integer.parseInt(item.getPrice()) * Integer.parseInt(item.getQuantity()) );
 		    cell8.setCellStyle(style);
 		    
 		    i++;

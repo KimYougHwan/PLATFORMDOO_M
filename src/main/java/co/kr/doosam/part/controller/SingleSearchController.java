@@ -42,5 +42,11 @@ public class SingleSearchController {
 		return "part/singleSearch";
 	}
 	
-	
+	@RequestMapping(value="/part/searchLayer", method={RequestMethod.POST, RequestMethod.GET})
+	public String openLayer(Model model, PartSearchVo partSearchVo, HttpServletRequest req){
+		
+		model.addAttribute("selectPart","");
+		
+		return "part/searchLayer";
+	}
 }

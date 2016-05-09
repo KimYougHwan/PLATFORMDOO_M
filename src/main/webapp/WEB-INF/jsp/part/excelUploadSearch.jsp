@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<%@page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <head>
@@ -11,9 +10,9 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <!-- Bootstrap core CSS -->
-<link href="/resources/bootstrap/dist/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href="/resources/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="/resources/js/jquery.min.js"></script>
+<script src="/resources/bootstrap/dist/js/bootstrap.min.js"></script>
 </head>
 <script>
 var page = 0;
@@ -52,8 +51,21 @@ var cnt = 0;
 			}
 		})
 
+		
 	});
 
+	function openLayer(){
+		
+		$.ajax({
+			url : '/part/searchLayer',
+			data: { page : page},
+			dataType : 'html',
+			success : function(data) {
+				$('#layerContents').html(data);
+				$('#layerBtn').click();
+			}
+		});
+	}
 
 
 	function lastPostFunc() { //스크롤 페이징
@@ -168,6 +180,7 @@ var cnt = 0;
 		}
 	}
 	
+
 	
 </script>
 
@@ -208,8 +221,8 @@ var cnt = 0;
 					<td><input type="checkbox" id="${item.oid }" name="checkBox" value="${item.oid }" /></td>
 					<td>${item.brandCode }</td>
 					<td>카테고리</td>
-					<td>${item.partsNumber }</td>
-					<td>${item.partsNameKo }(${item.partsNameEn })</td>
+					<td onclick="openLayer()">${item.partsNumber }</td>
+					<td onclick="openLayer()">${item.partsNameKo }(${item.partsNameEn })</td>
 					<td>${item.price }</td>
 					<td>${item.quantity }</td>
 					<td>${item.price * item.quantity }원</td>
@@ -226,4 +239,27 @@ var cnt = 0;
 
 	</div>
 	<!-- /container -->
+	
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" id="layerBtn" style="display:none"></button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" id="layerContents">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 </body>

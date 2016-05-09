@@ -26,7 +26,7 @@ public interface ExcelUploadService {
 	public List<PartSearchVo> findByUserNameAndPage(int page);
 	
 	@Select(" SELECT c.oid, a.brand_code as brandCode, a.parts_number as partsNumber, a.parts_name_ko as partsNameKo"
-			+ ", a.parts_name_en as partsNameEn, b.price FROM HMC_PARTS_MASTER a"
+			+ ", a.parts_name_en as partsNameEn, b.price, c.quantity FROM HMC_PARTS_MASTER a"
 			+ ", HMC_PARTS_PRICE b, HMC_EXCEL_UPLOAD c where c.user_id = #{userId} and a.parts_number = c.parts_number and a.parts_number = b.parts_number LIMIT #{page}, 20")
 	public List<PartSearchVo> findByUserIdAndPage(PartSearchVo partSearchVo);
 	
@@ -40,7 +40,7 @@ public interface ExcelUploadService {
 	public void updateByOidAndUserId(PartSearchVo partSearchVo);
 	
 	@Select(" SELECT c.oid, a.brand_code as brandCode, a.parts_number as partsNumber, a.parts_name_ko as partsNameKo"
-			+ ", a.parts_name_en as partsNameEn, b.price FROM HMC_PARTS_MASTER a"
+			+ ", a.parts_name_en as partsNameEn, b.price, c.quantity FROM HMC_PARTS_MASTER a"
 			+ ", HMC_PARTS_PRICE b, HMC_EXCEL_UPLOAD c where c.user_id = #{userId} and checkbox = 'Y' and c.parts_number = a.parts_number and a.parts_number = b.parts_number")
 	public List<PartSearchVo> findByUserIdAndCheck(String userId);
 	
