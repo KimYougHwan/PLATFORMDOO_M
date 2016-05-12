@@ -32,27 +32,68 @@
 
     <div class="container">
 
-      <form class="form-signin" action="/loginChk.do">
+      <form class="form-signin">
         <h2 class="form-signin-heading">Please sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+        <!-- <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>  -->
+        <input type="text" id="inputId" name="inputId" class="form-control" placeholder="Id" required autofocus>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+        <input type="password" id="inputPassword" name="inputPassword"  class="form-control" placeholder="Password" required>
         <div class="checkbox">
           <label>
             <input type="checkbox" value="remember-me"> Remember me
           </label>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <button class="btn btn-lg btn-primary btn-block" onclick="loginChk()">Sign in</button>
+        <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>  -->
       </form>
-      <form class="form-signin" action="/order/detailOrderList.do">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">detail</button>
-	  </form>
-	  <form class="form-signin" action="/order/selectDetailOrder.do">
-		<button class="btn btn-lg btn-primary btn-block" type="submit">select</button>
-	  </form>
     </div> <!-- /container -->
-
+</body>
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="/resources/assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+ <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>   
+<script>
+
+
+	function loginChk(){
+		//id 5자리 이상 , pw 7 자리 이상 check
+		var id = document.getElementById("inputId").value;
+		var pw = document.getElementById("inputPassword").value
+		var idLen = id.length;
+		var pwLen = pw.length;
+		if(idLen > 5 && pwLen > 7){
+			$.ajax({
+				 url : "/loginChk.do",
+				 type : "get",
+				 data : { "inputId" : id , "inputPassword" : pw},
+				 dataType : "json",
+				 async: false,
+				 timeout:1000000,
+				 success : function(result){
+					alert(result);
+					//var chk = JSON.stringify(result);	
+					//var chk = JSON.stringify(result);			
+					//var ccc = JSON.parse(chk);
+					var chk = Number(result);
+					if(chk ==1){
+						alert("로그인 성공");
+					}else if(chk == 2){
+						alert("실패");
+					}else if(chk == 3){
+						alert("벤");
+					}
+				 },error:function(request,status,error){
+		          		alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		         	}
+			});
+		}else{
+		}
+
+
+	}
+
+</script>
+    
