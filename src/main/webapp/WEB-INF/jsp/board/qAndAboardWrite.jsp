@@ -20,23 +20,20 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" action="/board/qAndAboardWriteAction">
 			<div class="form-group">
 				<label class="col-sm-2 control-label"><p class = "text-left">제목&emsp;&emsp;&emsp;:</p></label>
 				<div class="col-sm-4">
-					<input class="form-control" id="focusedInput" type="text"
-						value="Click to focus...">
+					<input class="form-control"  type="text" name="title"
+						value="">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="inputPassword" class="col-sm-2 control-label"><p class = "text-left">카테고리&nbsp;&nbsp;&nbsp;&nbsp;:</p></label>
+				<label class="col-sm-2 control-label"><p class = "text-left">카테고리&nbsp;&nbsp;&nbsp;&nbsp;:</p></label>
 				<div class="col-sm-2">
-					<select class="btn btn-primary">
-						<option>1123</option>
-						<option>2123</option>
-						<option>3123</option>
-						<option>4123</option>
-						<option>5123</option>
+					<select class="btn btn-primary" name ="boardType">
+						<option value = "notice">공지사항</option>
+						<option value = "qna">Q&A</option>
 					</select>
 				</div>
 			</div>
@@ -48,7 +45,7 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label"><p class = "text-left">내용&emsp;&emsp;&emsp;:</p></label>
-				<textarea class="form-control" rows= "8" id="comm"></textarea>
+				<textarea class="form-control" rows= "8" name="comm"></textarea>
 			</div>
 			<div class="form-group">
 				<div class="">

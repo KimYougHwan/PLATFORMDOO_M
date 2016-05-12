@@ -20,23 +20,19 @@
 </head>
 <body>
 	<div class="container">
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" action="/board/qAndAboardUpdateAction">
 			<div class="form-group">
 				<label class="col-sm-2 control-label"><p class = "text-left">제목&emsp;&emsp;&emsp;:</p></label>
 				<div class="col-sm-4">
-					<input class="form-control" id="focusedInput" type="text"
-						value="Click to focus...">
+					<input class="form-control" id="focusedInput" type="text" name="title" value=${hmcBoard.title}>
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="inputPassword" class="col-sm-2 control-label"><p class = "text-left">카테고리&nbsp;&nbsp;&nbsp;&nbsp;:</p></label>
 				<div class="col-sm-2">
-					<select class="btn btn-primary">
-						<option>1123</option>
-						<option>2123</option>
-						<option>3123</option>
-						<option>4123</option>
-						<option>5123</option>
+					<select class="btn btn-primary" name="boardType">
+						<option value = "notice">notice</option>
+						<option value = "qna">qna</option>
 					</select>
 				</div>
 			</div>
@@ -48,7 +44,12 @@
 			</div>
 			<div class="form-group">
 				<label class="col-sm-2 control-label"><p class = "text-left">내용&emsp;&emsp;&emsp;:</p></label>
-				<textarea class="form-control" rows= "8" id="comm"></textarea>
+				<textarea class="form-control" rows= "8" name="comm">${hmcBoard.comm}</textarea>
+			</div>
+			<div>
+				<input type ="hidden" name="oid" value="${hmcBoard.oid}"/>
+				<input type ="hidden" name="userId" value="${hmcBoard.userId}"/>
+				<input type ="hidden" name="createUser" value="${hmcBoard.createUser}"/>
 			</div>
 			<div class="form-group">
 				<div class="">
