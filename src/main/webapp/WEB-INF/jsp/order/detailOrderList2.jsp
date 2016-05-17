@@ -94,22 +94,22 @@
 	<tbody>
 		<c:forEach var="detailList2" items="${detailList2}">
 			<TR>
-				<td>${detailList2.oid}</td>
-				<td>${detailList2.partsNumber}</td>
 				<td></td>
+				<td>${detailList2.cartnumber}</td>
+				<td>${detailList2.partsnumber}</td>
+				<td>${detailList2.partsnameko}</td>
+				<td>${detailList2.brandcode}</td>
+				<td>${detailList2.ordercnt}</td>
+				<td>${detailList2.unitoid}</td>
+				<td>${detailList2.avgpay}</td>
+				<td>${detailList2.ordersum}</td>
+				<td>${detailList2.provideqty}</td>
+				<td>${detailList2.providesum}</td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${detailList2.modelcode}</td>
+				<td>${detailList2.itemcode}</td>
+				<td>${detailList2.bulk}</td>
+				<td>${detailList2.weight}</td>
 				<td></td>
 			</TR>
 		</c:forEach>

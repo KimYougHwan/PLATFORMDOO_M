@@ -32,22 +32,23 @@
 					var html="";
    	         		for(var i = 0 ; i < listmain.length ; i++) {
    	         			html += '<tr>';
-   	         			html += '<td>' + listmain[i].oid + '</td>' ;
-   	         			html += '<td>' + listmain[i].partsNumber + '</td>' ;
    	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
+   	         			html += '<td>' + listmain[i].cartnumber + '</td>' ;
    	         			html += '<td></td>' ;
+	         			html += '<td>' + listmain[i].partsnumber + '</td>' ;
+	         			html += '<td>' + listmain[i].partnameko + '</td>' ;
+	         			html += '<td>' + listmain[i].brandcode + '</td>' ;
+	         			html += '<td>' + listmain[i].ordercnt + '</td>' ;
+	         			html += '<td>' + listmain[i].unitoid + '</td>' ;
+	         			html += '<td></td>' ;
+	         			html += '<td>' + listmain[i].ordersum + '</td>' ;
+	         			html += '<td>' + listmain[i].provideqty + '</td>' ;
+   	         			html += '<td>' + listmain[i].providesum + '</td>' ;
    	         			html += '<td></td>' ;
          				html += '<td></td>' ;
          				html += '</tr>'
    	          		} 
+   	         	
    	         		$('#baclisttable > tbody').html(html);
    	         		   	         		
    	            },
@@ -100,18 +101,18 @@
 	<tbody>
 		<c:forEach var="backorderlist" items="${backorderlist}">
 			<TR>
-				<td>${backorderlist.oid}</td>
-				<td>${backorderlist.partsNumber}</td>
 				<td></td>
+				<td>${backorderlist.cartnumber}</td>
 				<td></td>
+				<td>${backorderlist.partsnumber}</td>
+				<td>${backorderlist.partnameko}</td>
+				<td>${backorderlist.brandcode}</td>
+				<td>${backorderlist.ordercnt}</td>
+				<td>${backorderlist.unitoid}</td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${backorderlist.ordersum}</td>
+				<td>${backorderlist.provideqty}</td>
+				<td>${backorderlist.providesum}</td>
 				<td></td>
 				<td></td>
 			</TR>

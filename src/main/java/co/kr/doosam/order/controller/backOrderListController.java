@@ -29,7 +29,7 @@ public class backOrderListController {
 		System.out.println("chkdate = "+chkdate);
 		List<backOrderListVo> backorderlist = null;
 		
-		backorderlist=backorderlistmapper.findAll(0, 40);
+		backorderlist=backorderlistmapper.findAll();
 		
 		model.addAttribute("backorderlist", backorderlist);
 		model.addAttribute("page", pagea);
@@ -47,7 +47,7 @@ public class backOrderListController {
 		
 		List<backOrderListVo> backorderlist = null;
 		
-		backorderlist=backorderlistmapper.findAll(40, 40);
+		backorderlist=backorderlistmapper.findAll();
 		
 		return backorderlist;
 	}

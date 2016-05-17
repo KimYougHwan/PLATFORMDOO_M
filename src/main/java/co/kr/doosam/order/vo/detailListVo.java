@@ -5,35 +5,62 @@ public class detailListVo {
 	
 	public detailListVo(){}
 	
-	private int oid;
-	private String partsNumber;
-	private String partsNameKo;
-	private int createDate;
+	private String cartnumber;
+	private String orderdate;
+	private String cartscnt;
+	private String ordercnt;
+	private String ordersum;
+	private String provideqty;
+	private String providesum;
+	private String datesum;
 
-	public int getOid() {
-		return oid;
+	public String getCartnumber() {
+		return cartnumber;
 	}
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setCartnumber(String cartnumber) {
+		this.cartnumber = cartnumber;
 	}
-	public String getPartsNumber() {
-		return partsNumber;
+	public String getOrderdate() {
+		return orderdate;
 	}
-	public void setPartsNumber(String partsNumber) {
-		this.partsNumber = partsNumber;
+	public void setOrderdate(String orderdate) {
+		this.orderdate = orderdate;
 	}
-	public String getPartsNameKo() {
-		return partsNameKo;
+	public String getCartscnt() {
+		return cartscnt;
 	}
-	public void setPartsNameKo(String partsNameKo) {
-		this.partsNameKo = partsNameKo;
+	public void setCartscnt(String cartscnt) {
+		this.cartscnt = cartscnt;
 	}
-	public int getCreateDate() {
-		return createDate;
+	public String getOrdercnt() {
+		return ordercnt;
 	}
-	public void setCreateDate(int createDate) {
-		this.createDate = createDate;
+	public void setOrdercnt(String ordercnt) {
+		this.ordercnt = ordercnt;
 	}
-	
+	public String getOrdersum() {
+		return ordersum;
+	}
+	public void setOrdersum(String ordersum) {
+		this.ordersum = ordersum;
+	}
+	public String getProvideqty() {
+		return provideqty;
+	}
+	public void setProvideqty(String provideqty) {
+		this.provideqty = provideqty;
+	}
+	public String getProvidesum() {
+		return providesum;
+	}
+	public void setProvidesum(String providesum) {
+		this.providesum = providesum;
+	}
+	public String getDatesum() {
+		return datesum;
+	}
+	public void setDatesum(String datesum) {
+		this.datesum = datesum;
+	}
 	
 }

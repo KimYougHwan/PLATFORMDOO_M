@@ -34,12 +34,14 @@
     	 	$('#someDate').daterangepicker();
     	 	$('#dateList').click(function(){
     	 		$('#chkdate').val($('#someDate').val());
+    	 		alert($('#someDate').val());
     	 	});
     	 	$('#backorderList').click(function(){
     	 		$('#backpagesum').val($('#pagenum').val());
     	 		$('#backchkdate').val($('#chkdate').val());
     	 	});
     	 	runpage('${pagea}','${nowpage}');
+    	 	
     	});
     	
 		function detailnumattr(partsnum){
@@ -71,6 +73,8 @@
     				html += '<li><a href="javascript:pagenumclick(\''+i+'\');"><span class="glyphicon">'+chk+'</span></a></li>';
     			}
     			html += '<li><a href="javascript:pageclick(\''+pixs+'\',\'afterpage\');"><span class="glyphicon glyphicon-chevron-right"></span></a></li>';
+    		}else if($('#pagecount').val() == 0){
+    			html += '';
     		}else{
     			html += '<li><a href="javascript:pageclick(\''+pixs+'\',\'beforepage\');"><span class="glyphicon glyphicon-chevron-left"></span></a></li>';
     			for(var i=1; i<$('#pagecount').val()-nowcount; i++){
@@ -109,6 +113,8 @@
     				html += '<li><a href="javascript:pagenumclick(\''+i+'\');"><span class="glyphicon">'+chk+'</span></a></li>';
     			}
     			html += '<li><a href="javascript:pageclick(\''+pixs+'\',\'afterpage\');"><span class="glyphicon glyphicon-chevron-right"></span></a></li>';
+    		}else if($('#pagecount').val() == 0){
+    			html += '';
     		}else{
     			html += '<li><a href="javascript:pageclick(\''+pixs+'\',\'beforepage\');"><span class="glyphicon glyphicon-chevron-left"></span></a></li>';
     			for(var i=1; i<$('#pagecount').val()-nowcount; i++){
@@ -148,16 +154,19 @@
 					var html="";
    	         		for(var i = 0 ; i < listmain.length ; i++) {
    	         			html += '<tr>';
-   	         			html += '<td>' + listmain[i].oid + '</td>' ;
-   	         			html += '<td><a href="javascript:detailnumattr(\''+listmain[i].partsNumber+'\');">' + listmain[i].partsNumber + '</a></td>' ;
-   	         			//html += '<td>' + listmain[i].partsNumber + '</td>' ;
    	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
-	         			html += '<td></td>' ;
+   	         			html += '<td><a href="javascript:detailnumattr(\''+listmain[i].cartnumber+'\');">' + listmain[i].cartnumber + '</a></td>' ;
+   	         			html += '<td>' + listmain[i].orderdate + '</td>' ;
    	         			html += '<td></td>' ;
-   	         			html += '<td></td>' ;
+	         			html += '<td>' + listmain[i].cartscnt + '</td>' ;
+	         			html += '<td>' + listmain[i].ordercnt + '</td>' ;
+   	         			html += '<td>' + listmain[i].ordersum + '</td>' ;
+   	         			html += '<td>' + listmain[i].provideqty + '</td>' ;
+         				html += '<td>' + listmain[i].providesum + '</td>' ;
          				html += '<td></td>' ;
-         				html += '</tr>'
+         				html += '<td></td>' ;
+         				html += '<td>' + listmain[i].datesum + '</td>' ;
+	         			html += '</tr>'
    	          		} 
    	         		$('#detailTable > tbody').html(html);
    	         		   	         		
@@ -208,24 +217,32 @@
 			<td>No</td>
 			<td>주문번호</td>
 			<td>주문일</td>
-			<td>결제예정액</td>
-			<td>주문 물품대금</td>
-			<td>실 물품대금</td>
-			<td>결재액</td>
+			<td>통화</td>
+			<td>부품종류(개수)</td>
+			<td>주문수량</td>
+			<td>주문금액</td>
+			<td>공급QTY</td>
+			<td>공급금액</td>
+			<td>공급업체진행률(%)</td>
+			<td>부품공급율(%)</td>
 			<td>완료여부</td>
 		</tr>
 	</thead>
 	<tbody>
 		<c:forEach var="detailList" items="${detailList}">
 			<TR>
-				<td>${detailList.oid}</td>
-				<td><a href="javascript:detailnumattr('${detailList.partsNumber}');">${detailList.partsNumber}</a></td>
+				<td></td>
+				<td><a href="javascript:detailnumattr('${detailList.cartnumber}');">${detailList.cartnumber}</a></td>
+				<td>${detailList.orderdate}</td>
+				<td></td>
+				<td>${detailList.cartscnt}</td>
+				<td>${detailList.ordercnt}</td>
+				<td>${detailList.ordersum}</td>
+				<td>${detailList.provideqty}</td>
+				<td>${detailList.providesum}</td>
 				<td></td>
 				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${detailList.datesum}</td>
 			</TR>
 		</c:forEach>
 	</tbody>
