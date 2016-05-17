@@ -38,6 +38,7 @@ public class LoginController {
 		int returnPage;
 		
 		int invalCnt = memberMapper.invalChk(id);
+		String companyCode = "";
 		//로그인 실패 횟수 7회 체크
 		if(invalCnt < 7){
 			int user = memberMapper.findById(id,pw);
@@ -45,6 +46,7 @@ public class LoginController {
 				//로그인 성공
 				//로그인 성공시 페일 횟수 0
 				session.setAttribute("userId", id);
+				session.setAttribute("companyCode", companyCode);
 				returnPage=1;
 				//로그인 히스토리update
 				memberMapper.loginHistoryUpdate(id);

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class SelectDetailCartController {
 	
-	@RequestMapping(value = "/cart/selectDetailCart")
+	@RequestMapping(value = "/cart/selectDetailCart12321321")
 	public String selectDetailCart(){
 		//CartList 관리
 		return "cart/selectDetailCart";

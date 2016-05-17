@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -18,55 +19,97 @@
     <!--[if lt IE 9]><script src="/resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="/resources/assets/js/ie-emulation-modes-warning.js"></script>
 </head>
-<body>
-	<div class="container col-sm-7">
-		<form id = "test">
-			<div class="alert alert-warning" id = "ttt" style="display:none" >
-				<strong>라디오 버튼을 선택 해 주세요!</strong><br />
-			</div>
-			<div class="radio">
-			  <label><input type="radio" name="optradio" id ="a" value="1">일련번호 : 부품갯수 :  충금액 : D-1</label>
-			</div>
-			<div class="radio">
-			  <label><input type="radio" name="optradio" id ="a" value="2">일련번호 : 부품갯수 :  충금액 : D-10(입금확인중)</label>
-			</div>
-			<div class="radio">
-			  <label><input type="radio" name="optradio" id ="a" value="3">일련번호 : 부품갯수 :  충금액 : D-1</label>
-			</div>
-			<div class="radio">
-			  <label><input type="radio" name="optradio" id ="a" value="4">일련번호 : 부품갯수 :  충금액 : D-1</label>
-			</div>
-			<div align="right" >
-				<a target="_self" class="btn btn-info" id = "detailCart" onclick="test('optradio','selectDetailCart.do')">상세보기</a>
-				<a target="_self" class="btn btn-info" id = "order" onclick="test('optradio','selectDetailCart2.do')">주문하기</a>
-				<a target="_self" class="btn btn-info" id = "delete" onclick="test('optradio','managerCartList.do')">삭제</a>
-			</div>
-		</form>
+<body onload="loadBoard()">
+<div class="container">
+	<form class="form-horizontal" name="myForm" method="post" action="">
+	<DIV class="table">
+		<TABLE class="table table-striped" border="1">
+			<THEAD>
+				<TR class="bg-primary">
+					<td align="center">선택</Td>
+					<td align="center">장바구니 일련번호</td>
+					<td align="center">부품갯수</td>
+					<td align="center">총금액</td>
+					<td align="center">입금확인 만료일</td>
+					<td align="center">입금마감</td>
+				</TR>
+			</THEAD>
+			<tbody>
+			<c:forEach var = "list" items="${list}">
+				<tr>
+					<td align="center" ><input type="checkbox" name="chkBox"  onclick="changeChkBox(this)" value = "${list.cartNumber}" ></td>
+					<td align="center"><input type="hidden" name="chkBox2"  onclick="changeChkBox(this)" value = "${list.cartNumber}" >${list.cartNumber}</td>
+					<td align="right" ><input type="hidden" name = "orderCnt" value = "" >${list.orderCnt}</td>
+					<td align="right"><input type="hidden" name = "totalAmount" value = "" >${list.totalAmount}</td>
+					<td align="center"><input type="hidden" name = "depositDate" value = "" >${list.depositDate}</td>
+					<td><input type="hidden" name = "status" value = "${list.status}" >
+					     D - ${list.dDay}
+						<c:if test="${list.status==1}">(입금확인중)</c:if>
+					</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		</TABLE>
+	</DIV>
+
+	<div align="right">
+		<a type="button" class="btn btn-primary" onclick="selectDetailCart()">상세보기</a>
+		<a type="button" class="btn btn-primary" onclick="update()">주문하기</a>
+		<button type="submit" class="btn btn-primary">삭제</button>
 	</div>
+	<div>
+	<ul class="pagination" id ="test" >
+	   <li class="disabled" id="pre"><a href="#"><span class="glyphicon glyphicon-chevron-left"></span></a></li>
+	   <li><a href="#" ></a></li>
+	   <li><a href="#"><span class="glyphicon glyphicon-chevron-right"></span></a></li>
+	</ul>
+	</div>
+	</form>
+</div>
 </body>
 </html>
-
-
-<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
-	function test(obj,addr){
-		//라디오 버튼, 컨트롤러 주소 받음
-		var rObj = document.all(obj);
-		var chk = null;
-		//라디오버튼에서 checked(true)
-		for(i = 0; i < rObj.length; i++){
-			chk = rObj[i].checked;
-			if(chk){
-				//파라미터로 받은 주소값으로 이동
-				location.href = addr;
-				break;
-			}
-		}
-		if(!chk){  //성택된 라디오 버튼이 없을경우 alert 띄움
-			document.getElementById("ttt").style.display="block";
+function selectDetailCart(){
+	var len = document.all.chkBox.length;
+	var cartNumber = null;
+	var status = null;
+	var form=document.myForm; //폼 name
+
+	//라디오박스 체크 여부 확인
+	for(i = 0; i < len; i++){
+		if(document.all.chkBox[i].checked==true)
+		{
+			//파라미터 담는다
+			cartNumber = document.all.chkBox[i].value;
+			status = document.all.status[i].value;
+			
+			alert(status);
+			
 		}
 	}
 	
-</script>
+	
+	form.action="/cart/selectDetailCart.do?cartNumber="+cartNumber+"&status="+status;    
+	//form.data.value = "asdfsadfasdfa";
+    //form.method="post";
+    form.submit();
+	
+}
 
+//체크박스 1개만 선택
+function changeChkBox(oid) {
+	var obj = document.getElementsByName("chkBox");
+	
+	for(var i=0; i<obj.length; i++){
+		if(obj[i] != oid){
+            obj[i].checked = false;
+        }
+	}
+}
+
+
+</script>
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+<script src="assets/js/ie10-viewport-bug-workaround.js"></script>
